@@ -1,15 +1,14 @@
 # cstnt
 
-A simple news aggregator app built with SvelteKit.
+A minimalist version of the popular Okanagan news site, castanet.net
 
 ![cstnt Screenshot](./assets/cstnt-screenshot.png)
 
 ## Features
 
-- Display news items from multiple cities
-- Dark mode toggle with preference storage
-- City selection with preference storage
-- Responsive design
+- You can view news for multiple cities
+- Dark mode toggle
+- Less yellow
 
 ## Development
 
