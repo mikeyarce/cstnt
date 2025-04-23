@@ -1,19 +1,31 @@
 <script>
-    let darkmode = false;
     import { onMount } from "svelte";
-
     import { page } from '$app/stores';
-    const isDark = $page.url.searchParams.has('dark');
-
-    if ( isDark) {
-        onMount(async () => {
-            toggle();
-        });
-    }
+    
+    let darkmode = false;
+    
+    onMount(() => {
+        // Check localStorage first
+        const storedPreference = localStorage.getItem('darkmode');
+        if (storedPreference !== null) {
+            darkmode = storedPreference === 'true';
+            if (darkmode) {
+                window.document.body.classList.add('dark-mode');
+            }
+        } else {
+            // Fall back to URL param if no localStorage value
+            darkmode = $page.url.searchParams.has('dark');
+            if (darkmode) {
+                window.document.body.classList.add('dark-mode');
+            }
+        }
+    });
 
     function toggle() {
         darkmode = !darkmode;
-        window.document.body.classList.toggle('dark-mode')
+        window.document.body.classList.toggle('dark-mode');
+        // Save preference to localStorage
+        localStorage.setItem('darkmode', darkmode.toString());
     }
 </script>
 

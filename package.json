@@ -13,7 +13,7 @@
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
-		"@sveltejs/adapter-auto": "^1.0.0",
+		"@sveltejs/adapter-static": "^1.0.0",
 		"@sveltejs/kit": "^1.0.0",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
@@ -24,10 +24,5 @@
 		"vite": "^4.0.0",
 		"vitest": "^0.25.3"
 	},
-	"type": "module",
-	"dependencies": {
-		"@rowanmanning/fetch-feed": "^2.2.3",
-		"xml-js": "^1.6.11",
-		"xml2js": "^0.4.23"
-	}
+	"type": "module"
 }
