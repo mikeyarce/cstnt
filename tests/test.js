@@ -12,6 +12,13 @@ test('dark mode toggle button exists', async ({ page }) => {
 
 test('city buttons exist', async ({ page }) => {
 	await page.goto('/');
-	const buttons = await page.$$('.cities button');
-	expect(buttons.length).toBe(4);
+	await expect(page.locator('.cities button')).toHaveText([
+		'Vernon',
+		'Kelowna',
+		'Penticton',
+		'Kamloops',
+		'Salmon Arm',
+		'Oliver/Osoyoos',
+		'West Kootenay'
+	]);
 });

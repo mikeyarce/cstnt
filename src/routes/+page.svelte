@@ -3,38 +3,31 @@
     const [data, loading, error, get, currentCity] = fetchStore();
     import Toggle from './Toggle.svelte';   
 
-    function selectCity(city) {
-        get(city);
-    }
-
-    $: cityTitle = $currentCity.charAt(0).toUpperCase() + $currentCity.slice(1);
+    const cities = [
+        { slug: 'vernon', label: 'Vernon' },
+        { slug: 'kelowna', label: 'Kelowna' },
+        { slug: 'penticton', label: 'Penticton' },
+        { slug: 'kamloops', label: 'Kamloops' },
+        { slug: 'salmon-arm', label: 'Salmon Arm' },
+        { slug: 'oliver-osoyoos', label: 'Oliver/Osoyoos' },
+        { slug: 'west-kootenay', label: 'West Kootenay' }
+    ];
 </script>
 
 <h1>cstnt</h1>
 
 <Toggle />
 
-<div class="cities">
-    <button 
-        on:click={() => selectCity("vernon")} 
-        class:active={$currentCity === "vernon"}>
-        Vernon
-    </button>
-    <button 
-        on:click={() => selectCity("kelowna")} 
-        class:active={$currentCity === "kelowna"}>
-        Kelowna
-    </button>
-    <button 
-        on:click={() => selectCity("penticton")} 
-        class:active={$currentCity === "penticton"}>
-        Penticton
-    </button>
-    <button 
-        on:click={() => selectCity("kamloops")} 
-        class:active={$currentCity === "kamloops"}>
-        Kamloops
-    </button>
+<div class="cities" role="group" aria-label="Editions">
+    {#each cities as { slug, label } (slug)}
+        <button
+            type="button"
+            on:click={() => get(slug)}
+            class:active={$currentCity === slug}
+            aria-pressed={$currentCity === slug}>
+            {label}
+        </button>
+    {/each}
 </div>
 
     {#if $loading}
@@ -60,12 +53,16 @@
         margin-left: 1em;
     }
     .cities {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
         margin-left: 2em;
         margin-bottom: 25px;
     }
     button {
         padding: 4px;
-        margin-right: 8px;
+        min-block-size: 24px;
+        min-inline-size: 24px;
         border: 1px solid #ccc;
         border-radius: 4px;
         cursor: pointer;
